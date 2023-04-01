@@ -11,3 +11,12 @@ class ArcList:
             self.arcList.add((x,y))
 
         self.arcList = list(self.arcList)
+    
+    def countBackArcs(self, verify):
+        #(u,v)
+        count = 0
+        for u, v in self.arcList:
+            for a, b in self.arcList:
+                if u == b and v == a and (verify["d"][v] < verify["d"][u] < verify["f"][u] < verify["f"][v]):
+                    count += 1
+        return count

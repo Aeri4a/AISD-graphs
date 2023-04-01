@@ -1,21 +1,26 @@
-# -- DFS Algorithm --
 
+#TODO - stack is not working
 time = 1
-
-def dfs(u, adjList, pre, post, vis):
+def dfs(start, adjList, pre, post, vis):
     global time
-    print(time)
-    pre[u] = time
-    time += 1
-    vis[u] = 1
+    stack = [start]
 
-    for v in adjList[u]:
-        if vis[v] == 0:
-            dfs(v, adjList, pre, post, vis)
-	
-    post[u] = time
-    time += 1
+    while stack:
+        u = stack[-1]
+        if not vis[u]:
+            pre[u] = time
+            time += 1
+            vis[u] = 1
 
+        done = True
+        for v in adjList[u]:
+            if not vis[v]:
+                stack.append(v)
+                done = False
+        if done:
+            stack.pop()
+            post[u] = time
+            time += 1
 
 def runDFS(n, adjList):
     global time
@@ -31,5 +36,5 @@ def runDFS(n, adjList):
     #Complete what is still not visited
     while vis[1:].count(0) != 0:
         dfs(vis[1:].index(0)+1, adjList, pre, post, vis)
-    
+
     return time, vis, pre, post
