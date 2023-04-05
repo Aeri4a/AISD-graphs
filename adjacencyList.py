@@ -11,6 +11,6 @@ class AdjacencyList:
         count = 0
         for u in range(1, len(self.adjList)+1):
             for v in self.adjList[u]:
-                if u in self.adjList[v] and (verify["d"][v] < verify["d"][u] < verify["f"][u] < verify["f"][v]):
+                if not (verify["d"][v] < verify["d"][u] < verify["f"][u] < verify["f"][v]):
                     count += 1
         return count

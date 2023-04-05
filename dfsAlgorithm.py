@@ -1,26 +1,28 @@
 
-#TODO - stack is not working
 time = 1
-def dfs(start, adjList, pre, post, vis):
+def dfs(start, struct, pre, post, vis):
     global time
     stack = [start]
 
     while stack:
-        u = stack[-1]
-        if not vis[u]:
-            pre[u] = time
+        rem = stack[-1] #remember
+        if vis[rem] == 0:
+            vis[rem] = 1
+            pre[rem] = time
             time += 1
-            vis[u] = 1
 
-        done = True
-        for v in adjList[u]:
-            if not vis[v]:
-                stack.append(v)
-                done = False
-        if done:
-            stack.pop()
-            post[u] = time
+        added = False
+        for neightbour in struct[rem]:
+            if vis[neightbour] == 0:
+                stack.append(neightbour)
+                added = True
+                break
+        
+        if not added:
+            post[rem] = time
             time += 1
+            stack.pop()
+
 
 def runDFS(n, adjList):
     global time
@@ -36,5 +38,6 @@ def runDFS(n, adjList):
     #Complete what is still not visited
     while vis[1:].count(0) != 0:
         dfs(vis[1:].index(0)+1, adjList, pre, post, vis)
+    
 
     return time, vis, pre, post

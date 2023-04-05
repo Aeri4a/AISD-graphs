@@ -1,3 +1,5 @@
+*.json
+*.xlsx
 test*.py
 .vscode
 __pycache__
