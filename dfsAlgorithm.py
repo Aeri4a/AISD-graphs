@@ -12,9 +12,9 @@ def dfs(start, struct, pre, post, vis):
             time += 1
 
         added = False
-        for neightbour in struct[rem]:
-            if vis[neightbour] == 0:
-                stack.append(neightbour)
+        for neighbour in struct[rem]:
+            if vis[neighbour] == 0:
+                stack.append(neighbour)
                 added = True
                 break
         
