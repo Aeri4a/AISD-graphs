@@ -7,7 +7,7 @@ import dfsAlgorithm  #implementation for adjacency list
 # -- DATA PART --
 # -- GENERATE RANGES --
 startNumber = 1000
-n = 10
+n = 5
 step = 1000
 dataRange = [
   x for x in range(startNumber, startNumber + (n - 1) * step + 1, step)
